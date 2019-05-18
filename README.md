@@ -1,2 +1,5 @@
-# redux-tuto
-Redux official tutorial
+# How to use
+
+clone & npm start
+
+
