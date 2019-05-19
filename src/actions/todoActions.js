@@ -10,10 +10,16 @@ export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER";
  * Enums
  */
 
-export const VisibilityFilters = {
+export const ETodoVisibilityFilter = {
   SHOW_ALL: "SHOW_ALL",
   SHOW_COMPLETED: "SHOW_COMPLETED",
   SHOW_UNCOMPLETED: "SHOW_UNCOMPLETED"
+}
+
+export const ETodoActionType = {
+  ADD_TODO: "ADD_TODO",
+  TOGGLE_TODO: "TOGGLE_TODO",
+  SET_VISIBILITY_FILTER: "SET_VISIBILITY_FILTER"
 }
 
 /**
@@ -22,7 +28,7 @@ export const VisibilityFilters = {
 
 export function addTodo(text) {
   return {
-    type: ADD_TODO,
+    type: ETodoActionType.ADD_TODO,
     payload: {
       todoText: text
     }
@@ -31,7 +37,7 @@ export function addTodo(text) {
 
 export function toggleTodo(_id) {
   return {
-    type: TOGGLE_TODO,
+    type: ETodoActionType.TOGGLE_TODO,
     payload: {
       todoId: id
     }
@@ -45,7 +51,7 @@ export function setVisibilityFilter(_filter) {
   }
 
   return {
-    type: SET_VISIBILITY_FILTER,
+    type: ETodoActionType.SET_VISIBILITY_FILTER,
     payload: {
       visibilityFilter: _filter
     }
