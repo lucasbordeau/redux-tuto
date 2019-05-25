@@ -8,7 +8,7 @@ const getVisibleTodos = (todoList, filter) => {
       return todoList
     case 'SHOW_COMPLETED':
       return todoList.filter(todo => todo.completed)
-    case 'SHOW_ACTIVE':
+    case 'SHOW_UNCOMPLETED':
       return todoList.filter(todo => !todo.completed)
   }
 }
