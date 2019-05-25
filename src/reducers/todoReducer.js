@@ -7,47 +7,54 @@ const initialState = {
 
 // Using state = initialState.todoList, we know it's an empty array but it is more verbose for the tutorial
 function todoReducer(state = initialState.todoList, action) {
-
-}
-
-function visibilityFilterReducer(state = ETodoVisibilityFilter.SHOW_ALL, action) {
-  
-}
-
-function todoApp(state = initialState, action) {
-  if(!action.payload) throw new Error(`Action doesn't have payload property : ${action}`);
-
   switch(action.type) {
-    case ETodoActionType.SET_VISIBILITY_FILTER : {
-      return Object.assign({}, state, {
-        visibilityFilter: action.payload.visibilityFilter
-      });
-    }
     case ETodoActionType.ADD_TODO : {
-      return Object.assign({}, state, {
-        todoList: [
-          ...state.todoList,
-          {
-            id: state.todoList.length + 1,
-            text: action.payload.text,
-            completed: false
-          }
-        ]
-      })
+      let newTodo = {
+        id: state.length + 1,
+        text: action.payload.todoText,
+        completed: false
+      };
+
+      return [...state, newTodo];
     }
     case ETodoActionType.TOGGLE_TODO : {
-      return Object.assign({}, state, {
-        todoList: state.todoList.map(todo => {
-          if(todo.id === action.payload.id) {
-            todo.completed = !todo.completed;
-          }
+      let newTodoList = [];
+      for(let todo of state) {
+        let newTodo = {
+          id: todo.id,
+          text: todo.text,
+          completed: todo.completed
+        }
 
-          return todo;
-        })
-      })
+        if(todo.id === action.payload.todoId) {
+          newTodo.completed = !todo.completed;
+        }
+
+        newTodoList.push(newTodo);
+      }
+      
+      return newTodoList;
     }
     default: {
       return state;
     }
+  }
+}
+
+function visibilityFilterReducer(state = ETodoVisibilityFilter.SHOW_ALL, action) {
+  switch(action.type) {
+    case ETodoActionType.SET_VISIBILITY_FILTER : {
+      return action.payload.visibilityFilter
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+export function todoMainReducer(state = initialState, action) {
+  return {
+    visibilityFilter: visibilityFilterReducer(state.visibilityFilter, action),
+    todoList: todoReducer(state.todoList, action)
   }
 }

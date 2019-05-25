@@ -39,13 +39,13 @@ export function toggleTodo(_id) {
   return {
     type: ETodoActionType.TOGGLE_TODO,
     payload: {
-      todoId: id
+      todoId: _id
     }
   }
 }
 
 export function setVisibilityFilter(_filter) {
-  let foundFilter = Object.values(VisibilityFilters).find(_filter);
+  let foundFilter = Object.values(ETodoVisibilityFilter).find(f => f === _filter);
   if(!foundFilter) {
     throw new Error(`Visibility filter does not exists : ${_filter}`);
   }
