@@ -12,7 +12,7 @@ class AddTodo extends React.Component {
   render() {
     return (
       <div>
-        <form
+        <Form
           onSubmit={e => {
             e.preventDefault()
             if (!this.inputTodoTextRef.current.value.trim()) {
@@ -22,11 +22,20 @@ class AddTodo extends React.Component {
             this.inputTodoTextRef.current.value = ''
           }}
         >
-          <input
-            ref={this.inputTodoTextRef}
-          />
-          <button type="submit">Add Todo</button>
-        </form>
+          <Form.Group controlId="formAddTodo">
+            <Form.Label>Add a new Todo</Form.Label>
+            <Form.Control type="text" placeholder="Enter description" ref={this.inputTodoTextRef} />
+            <Form.Text className="text-muted">
+              Think about something really important to do ...
+            </Form.Text>
+          </Form.Group>
+          <Button
+            variant="primary"
+            type="submit"
+          >
+            Add Todo  
+          </Button>
+        </Form>
       </div>
     );
   }

@@ -9,7 +9,7 @@ export default class TodoList extends React.Component {
 
   render() {
     return(
-      <ul>
+      <ListGroup>
         {this.props.todoList.map((item, index) => {
           return (
             <Todo 
@@ -20,7 +20,7 @@ export default class TodoList extends React.Component {
             />
           );
         })}
-      </ul>
+      </ListGroup>
     );
   }
 }

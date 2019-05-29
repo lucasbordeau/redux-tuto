@@ -6,18 +6,19 @@ export default class Todo extends React.Component {
     super(props);
 
     this.style = {
-      textDecoration: this.props.completed ? 'line-through' : 'none'
+      "text-decoration": this.props.completed ? 'line-through' : 'none'
     }
   }
 
   render() {
     return(
-      <li
+      <ListGroup.Item
+        action
         onClick={this.props.onClick}
         style={this.style}
       >
         {this.props.text}
-      </li>
+      </ListGroup.Item>
     );
   }
 }
