@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../../actions/todoActions'
+import { TextField, Button} from '@material-ui/core';
 
 class AddTodo extends React.Component {
   constructor(props) {
@@ -9,33 +10,35 @@ class AddTodo extends React.Component {
     this.inputTodoTextRef = React.createRef();
   }
 
+  // onSubmit={e => {
+  //   e.preventDefault()
+  //   if (!this.inputTodoTextRef.current.value.trim()) {
+  //     return
+  //   }
+  //   this.props.dispatch(addTodo(this.inputTodoTextRef.current.value))
+  //   this.inputTodoTextRef.current.value = ''
+  // }}
+
   render() {
     return (
       <div>
-        <Form
-          onSubmit={e => {
-            e.preventDefault()
-            if (!this.inputTodoTextRef.current.value.trim()) {
-              return
-            }
-            this.props.dispatch(addTodo(this.inputTodoTextRef.current.value))
-            this.inputTodoTextRef.current.value = ''
-          }}
+        <form
+          noValidate
+          autoComplete="off"
         >
-          <Form.Group controlId="formAddTodo">
-            <Form.Label>Add a new Todo</Form.Label>
-            <Form.Control type="text" placeholder="Enter description" ref={this.inputTodoTextRef} />
-            <Form.Text className="text-muted">
-              Think about something really important to do ...
-            </Form.Text>
-          </Form.Group>
-          <Button
-            variant="primary"
-            type="submit"
+          <TextField
+            id="new-todo-text"
+            label="New todo..."
+            margin="normal"
+            inputRef={this.inputTodoTextRef}
+          />
+          <Button 
+            variant="contained" 
+            onClick={() => {this.props.dispatch(addTodo(this.inputTodoTextRef.current.value))}}
           >
-            Add Todo  
+            Add todo
           </Button>
-        </Form>
+        </form>
       </div>
     );
   }

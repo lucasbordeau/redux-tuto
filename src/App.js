@@ -1,26 +1,32 @@
 import React from 'react';
 import './App.css';
-
-import { createStore } from 'redux'
-import { todoMainReducer } from './reducers/todoReducer'
-import { addTodo, setVisibilityFilter, toggleTodo, ETodoVisibilityFilter } from "./actions/todoActions";
-import VisibleTodoList from './components/container/VisibleTodoList';
 import AddTodo from "./components/container/AddTodo";
-import FilterSelector from './components/presentational/FilterSelector';
+import FilterSelector from './components/container/FilterSelector';
+import { Container, Typography, Grid } from "@material-ui/core";
+import FilteredTodoList from './components/container/FilteredTodoList';
 
 function App() {
   return (
     <div className="App">
-      <h1>React + Redux + Material-UI</h1>
-      <h2>Another todo app</h2>
-      <hr></hr>
-
-      <FilterSelector />
-      <AddTodo />
-      <hr></hr>
-      <h3>Todo List</h3>
-      <VisibleTodoList />
-      <hr></hr>
+      <Container>
+        <Grid container>
+          <Grid item>
+            <Typography variant="h1">React + Redux + Material-UI</Typography>
+            <Typography variant="h2">Another todo app</Typography>
+          </Grid>
+          <Grid container item>
+            <Grid item>
+              <FilterSelector />
+            </Grid>
+            <Grid item>
+              <AddTodo />
+            </Grid>
+            <Grid item>
+              <FilteredTodoList />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 }

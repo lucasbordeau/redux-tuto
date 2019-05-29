@@ -9,21 +9,7 @@ import { todoMainReducer } from "./reducers/todoReducer";
 
 const store = createStore(todoMainReducer)
 
-// console.log(store.getState());
-
-const unsubscribe = store.subscribe(() => { console.log(store.getState()) });
-
-// store.dispatch(addTodo("TEST 1"));
-// store.dispatch(addTodo("TEST 2"));
-// store.dispatch(addTodo("TEST 3"));
-// store.dispatch(toggleTodo(1));
-// store.dispatch(toggleTodo(1));
-// store.dispatch(toggleTodo(2));
-// store.dispatch(setVisibilityFilter(ETodoVisibilityFilter.SHOW_COMPLETED));
-
-// unsubscribe();
-
-// store.dispatch(toggleTodo(2));
+store.subscribe(() => { console.log(store.getState()) });
 
 ReactDOM.render(
   <Provider store={store}>

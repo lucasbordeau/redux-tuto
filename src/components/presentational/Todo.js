@@ -1,30 +1,42 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { ListItem, ListItemIcon, Checkbox, ListItemText, Paper } from '@material-ui/core';
 
 export default class Todo extends React.Component {
   constructor(props) {
     super(props);
-
-    this.style = {
-      "text-decoration": this.props.completed ? 'line-through' : 'none'
-    }
   }
 
   render() {
+    const style = {
+      textDecoration: this.props.todo.completed ? 'line-through' : 'none'
+    }
+
     return(
-      <ListGroup.Item
-        action
-        onClick={this.props.onClick}
-        style={this.style}
-      >
-        {this.props.text}
-      </ListGroup.Item>
+      <Paper>
+        <ListItem
+          style={style}
+        >
+          <ListItemIcon>
+            <Checkbox
+              edge="start"
+              checked={this.props.todo.completed}
+              onClick={() => { this.props.onTodoClick()}}
+              tabIndex={-1}
+              disableRipple
+            />
+          </ListItemIcon>
+          <ListItemText primary={this.props.todo.text} />
+        </ListItem>
+      </Paper>
     );
   }
 }
 
 Todo.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  onTodoClick: PropTypes.func.isRequired,
+  todo: PropTypes.shape({
+    completed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired
+  }).isRequired
 }
