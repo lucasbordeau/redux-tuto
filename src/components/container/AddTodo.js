@@ -8,6 +8,12 @@ class AddTodo extends React.Component {
     super(props);
 
     this.inputTodoTextRef = React.createRef();
+    this.handleOnAddClick = this.handleOnAddClick.bind(this);
+  }
+
+  handleOnAddClick() {
+    this.props.dispatch(addTodo(this.inputTodoTextRef.current.value));
+    this.inputTodoTextRef.current.value = "";
   }
 
   render() {
@@ -25,7 +31,7 @@ class AddTodo extends React.Component {
           />
           <Button 
             variant="contained" 
-            onClick={() => {this.props.dispatch(addTodo(this.inputTodoTextRef.current.value))}}
+            onClick={this.handleOnAddClick}
           >
             Add
           </Button>
