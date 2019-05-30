@@ -1,15 +1,6 @@
 /**
- * Action types
- */
-
-export const ADD_TODO = "ADD_TODO";
-export const TOGGLE_TODO = "TOGGLE_TODO";
-export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER";
-
-/**
  * Enums
  */
-
 export const ETodoVisibilityFilter = {
   SHOW_ALL: "SHOW_ALL",
   SHOW_COMPLETED: "SHOW_COMPLETED",
@@ -25,8 +16,13 @@ export const ETodoActionType = {
 /**
  * Action creators
  */
-
 export function addTodo(text) {
+  if(!text) {
+    return {
+      type: null
+    } 
+  }
+
   return {
     type: ETodoActionType.ADD_TODO,
     payload: {
