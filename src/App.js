@@ -20,7 +20,7 @@ const useStyle = makeStyles(() => ({
     padding: '0 30px',
     textAlign: "center"
   },
-  todoList: {
+  todoMenu: {
     display: "flex",
     flexDirection: "row",
     flexGrow: 1
@@ -38,16 +38,16 @@ function App() {
             <Typography variant="h2" className={classes.title}>Todoify</Typography>
           </Grid>
           <Grid container item xs={12}>
-            <Grid item xs={12} sm={6} >
-              <AddTodo />
-            </Grid>
-            <Grid item xs={12} sm={6} container className={classes.todoList}>
-              <Grid item xs={12}>
+            <Grid item xs={12} container className={classes.todoMenu}>
+              <Grid item xs={12} sm={6} >
+                <AddTodo />
+              </Grid>
+              <Grid item xs={12} sm={6} >
                 <FilterSelector />
               </Grid>
-              <Grid item xs={12}>
-                <FilteredTodoList />
-              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <FilteredTodoList />
             </Grid>
           </Grid>
         </Grid>
