@@ -6,7 +6,8 @@ import { TextField, Button, withStyles } from '@material-ui/core';
 const styles = {
   root: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "column",
+    margin: "20px"
   }
 }
 
@@ -16,6 +17,7 @@ class AddTodo extends React.Component {
 
     this.inputTodoTextRef = React.createRef();
     this.handleOnAddClick = this.handleOnAddClick.bind(this);
+    this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
   }
 
   handleOnAddClick() {
@@ -24,6 +26,17 @@ class AddTodo extends React.Component {
     if(newTodoText) {
       this.props.dispatch(addTodo(newTodoText));
       this.inputTodoTextRef.current.value = "";
+      this.inputTodoTextRef.current.focus();
+    }
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+  }
+
+  handleOnKeyDown(event) {
+    if(event.keyCode === 13) {
+      this.handleOnAddClick();
     }
   }
 
@@ -35,6 +48,8 @@ class AddTodo extends React.Component {
           noValidate
           autoComplete="off"
           className={classes.root}
+          onSubmit={this.handleFormSubmit}
+          onKeyDown={this.handleOnKeyDown}
         >
           <TextField
             id="new-todo-text"
