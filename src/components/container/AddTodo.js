@@ -10,15 +10,6 @@ class AddTodo extends React.Component {
     this.inputTodoTextRef = React.createRef();
   }
 
-  // onSubmit={e => {
-  //   e.preventDefault()
-  //   if (!this.inputTodoTextRef.current.value.trim()) {
-  //     return
-  //   }
-  //   this.props.dispatch(addTodo(this.inputTodoTextRef.current.value))
-  //   this.inputTodoTextRef.current.value = ''
-  // }}
-
   render() {
     return (
       <div>
@@ -36,7 +27,7 @@ class AddTodo extends React.Component {
             variant="contained" 
             onClick={() => {this.props.dispatch(addTodo(this.inputTodoTextRef.current.value))}}
           >
-            Add todo
+            Add
           </Button>
         </form>
       </div>
