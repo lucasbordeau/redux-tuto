@@ -17,12 +17,6 @@ export const ETodoActionType = {
  * Action creators
  */
 export function addTodo(text) {
-  if(!text) {
-    return {
-      type: null
-    } 
-  }
-
   return {
     type: ETodoActionType.ADD_TODO,
     payload: {

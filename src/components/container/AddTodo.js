@@ -1,7 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../../actions/todoActions'
-import { TextField, Button} from '@material-ui/core';
+import { TextField, Button, withStyles } from '@material-ui/core';
+
+const styles = {
+  root: {
+    display: "flex",
+    flexDirection: "row"
+  }
+}
 
 class AddTodo extends React.Component {
   constructor(props) {
@@ -12,16 +19,22 @@ class AddTodo extends React.Component {
   }
 
   handleOnAddClick() {
-    this.props.dispatch(addTodo(this.inputTodoTextRef.current.value));
-    this.inputTodoTextRef.current.value = "";
+    let newTodoText = this.inputTodoTextRef.current.value;
+
+    if(newTodoText) {
+      this.props.dispatch(addTodo(newTodoText));
+      this.inputTodoTextRef.current.value = "";
+    }
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <form
           noValidate
           autoComplete="off"
+          className={classes.root}
         >
           <TextField
             id="new-todo-text"
@@ -40,5 +53,7 @@ class AddTodo extends React.Component {
     );
   }
 }
+
+AddTodo = withStyles(styles)(AddTodo);
 
 export default AddTodo = connect()(AddTodo)
