@@ -1,13 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../../actions/todoActions'
-import { TextField, Button, withStyles } from '@material-ui/core';
+import { TextField, Button, withStyles, Grid } from '@material-ui/core';
+import { Add } from "@material-ui/icons";
 
 const styles = {
   root: {
     display: "flex",
-    flexDirection: "column",
-    margin: "20px"
+    flexDirection: "row",
+    marginBottom: "20px",
+    marginTop: "20px",
+    flewGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    minWidth: "100%"
+  },
+  textInput: {
+    minWidth: "100%"
   }
 }
 
@@ -18,6 +27,10 @@ class AddTodo extends React.Component {
     this.inputTodoTextRef = React.createRef();
     this.handleOnAddClick = this.handleOnAddClick.bind(this);
     this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+  }
+
+  componentDidMount() {
+    this.inputTodoTextRef.current.focus();
   }
 
   handleOnAddClick() {
@@ -47,22 +60,32 @@ class AddTodo extends React.Component {
         <form
           noValidate
           autoComplete="off"
-          className={classes.root}
           onSubmit={this.handleFormSubmit}
           onKeyDown={this.handleOnKeyDown}
         >
-          <TextField
-            id="new-todo-text"
-            label="New todo..."
-            margin="normal"
-            inputRef={this.inputTodoTextRef}
-          />
-          <Button 
-            variant="contained" 
-            onClick={this.handleOnAddClick}
+          <Grid 
+            container 
+            className={classes.root}
           >
-            Add
-          </Button>
+            <Grid item xs={12}>
+              <TextField
+                id="new-todo-text"
+                label="New todo..."
+                margin="normal"
+                className={classes.textInput}
+                inputRef={this.inputTodoTextRef}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button 
+                variant="contained" 
+                color="primary"
+                onClick={this.handleOnAddClick}
+              >
+                <Add />
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </div>
     );

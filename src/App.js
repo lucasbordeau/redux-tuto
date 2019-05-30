@@ -2,13 +2,14 @@ import React from 'react';
 import './App.css';
 import AddTodo from "./components/container/AddTodo";
 import FilterSelector from './components/container/FilterSelector';
-import { Container, Typography, Grid, makeStyles } from "@material-ui/core";
+import { Container, Typography, Grid, Paper, makeStyles } from "@material-ui/core";
 import FilteredTodoList from './components/container/FilteredTodoList';
+import CustomAppBar from './components/presentational/CustomAppBar';
 
 const useStyle = makeStyles(() => ({
   root: {
     display: "flex",
-    flexGrow: 1
+    flexGrow: 1,
   },
   title: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -24,6 +25,15 @@ const useStyle = makeStyles(() => ({
     display: "flex",
     flexDirection: "row",
     flexGrow: 1
+  },
+  container: {
+    display: "flex",
+    flexGrow: 1,
+    alignContent: "center"
+  },
+  mainPaper: {
+    margin: "20px",
+    padding: "20px"
   }
 }));
 
@@ -32,25 +42,25 @@ function App() {
 
   return (
     <div className="App">
-      <Container maxWidth="md" className={classes.root}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography variant="h2" className={classes.title}>Todoify</Typography>
-          </Grid>
-          <Grid container item xs={12}>
-            <Grid item xs={12} container className={classes.todoMenu}>
-              <Grid item xs={12} sm={6} >
-                <AddTodo />
-              </Grid>
-              <Grid item xs={12} sm={6} >
-                <FilterSelector />
-              </Grid>
+      <CustomAppBar />
+      <Container maxWidth="md" >
+        <Paper className={classes.mainPaper}>
+          <Grid container >
+            <Grid item xs={12} >
+              <Typography variant="h4">Todo list</Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} >
+              <AddTodo />
+            </Grid>
+            
+            <Grid item xs={12} >
+              <FilterSelector />
+            </Grid>
+            <Grid item xs={12} >
               <FilteredTodoList />
             </Grid>
           </Grid>
-        </Grid>
+        </Paper>
       </Container>
     </div>
   );

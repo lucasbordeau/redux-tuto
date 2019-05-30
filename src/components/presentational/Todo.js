@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import { ListItem, ListItemIcon, Checkbox, ListItemText, Paper } from '@material-ui/core';
+import { ListItem, ListItemIcon, Checkbox, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
 
 export default class Todo extends React.Component {
   constructor(props) {
@@ -13,22 +13,20 @@ export default class Todo extends React.Component {
     }
 
     return(
-      <Paper>
-        <ListItem
-          style={style}
-        >
-          <ListItemIcon>
-            <Checkbox
-              edge="start"
-              checked={this.props.todo.completed}
-              onClick={() => { this.props.onTodoClick()}}
-              tabIndex={-1}
-              disableRipple
-            />
-          </ListItemIcon>
-          <ListItemText primary={this.props.todo.text} />
-        </ListItem>
-      </Paper>
+      <ListItem
+        style={style}
+        role={undefined}  
+        button 
+      >
+        <ListItemText primary={this.props.todo.text} />
+        <ListItemSecondaryAction>
+          <Checkbox
+            edge="end"
+            checked={this.props.todo.completed}
+            onClick={() => { this.props.onTodoClick()}}
+          />
+        </ListItemSecondaryAction>
+      </ListItem>
     );
   }
 }

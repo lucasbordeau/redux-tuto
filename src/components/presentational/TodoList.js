@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import Todo from "./Todo";
-import { List } from '@material-ui/core';
+import { List, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import FilterSelector from "../container/FilterSelector";
 
 const useStyle = makeStyles(() => ({
   root: {
     overflowY: "scroll",
-    border: "1px solid black",
-    margin: "20px"
+    margin: "20px",
+    marginTop: "30px"
   }
 }));
 
